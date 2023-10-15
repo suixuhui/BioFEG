@@ -12,9 +12,10 @@ We train our biencoder in an iterative way: train biencoder -> train gan -> gene
 
 train biencoder on in-batch negatives: `PYTHONPATH=. python blink/biencoder/train_biencoder.py --data_path data/medmentions/processed --output_path models/medmentions/biencoder --learning_rate 1e-05 --num_train_epochs 1 --max_context_length 128 --max_cand_length 128 --train_batch_size 64 --eval_batch_size 32 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
 
-train biencoder on hard negatives: `PYTHONPATH=. python blink/biencoder/train_biencoder_hard.py --data_path models/medmentions/finetune/top64_candidates --output_path models/medmentions/hard_1/biencoder --path_to_model models/medmentions/finetune/pytorch_model.bin --learning_rate 1e-05 --num_train_epochs 1 --max_context_length 128 --max_cand_length 128 --train_batch_size 4 --eval_batch_size 4 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
+train biencoder on hard negatives: `PYTHONPATH=. python blink/biencoder/train_biencoder_hard.py --data_path models/medmentions/finetune/top64_candidates --output_path models/medmentions/biencoder --path_to_model models/medmentions/finetune/pytorch_model.bin --learning_rate 1e-05 --num_train_epochs 1 --max_context_length 128 --max_cand_length 128 --train_batch_size 4 --eval_batch_size 4 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
 
-2. train gan 
+2. train gan `PYTHONPATH=. python blink/biencoder/train_gan.py --data_path data/medmentions/processed --output_path models/medmentions/gan --path_to_model models/medmentions/biencoder/pytorch_model.bin --learning_rate 5e-05 --num_train_epochs 80 --max_context_length 128 --max_cand_length 128 --train_batch_size 64 --eval_batch_size 128 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
+3. 
 ### Cross-encoder
 
 
