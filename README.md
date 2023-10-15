@@ -2,8 +2,8 @@
 
 ## Data Preparation
 * Cleate a `data` fold
-* Prepare the zero-shot entity linking data following <https://github.com/dhdhagar/arboEL>, place it under `data`
-* Prepare data
+* Download the datasets from <https://github.com/dhdhagar/arboEL>, place it under `data`
+* Prepare data: `python data_process.py`
 
 ## Run
 1. Train 
