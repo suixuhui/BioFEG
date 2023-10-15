@@ -7,9 +7,7 @@
 
 ## Run
 ### Biencoder
-We train our biencoder in an iterative way: train biencoder -> train gan -> generate latent features -> finetune biencoder.
-
-We train our biencoder on in-batch negatives in the first iteration and on hard negatives in the following negatives.
+We train our biencoder in an iterative way: train biencoder -> train gan -> generate latent features -> finetune biencoder. We train our biencoder on in-batch negatives in the first iteration and on hard negatives in the following negatives.
 ### Cross-encoder
 
 
