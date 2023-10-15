@@ -15,7 +15,11 @@ train biencoder on in-batch negatives: `PYTHONPATH=. python blink/biencoder/trai
 train biencoder on hard negatives: `PYTHONPATH=. python blink/biencoder/train_biencoder_hard.py --data_path models/medmentions/finetune/top64_candidates --output_path models/medmentions/biencoder --path_to_model models/medmentions/finetune/pytorch_model.bin --learning_rate 1e-05 --num_train_epochs 1 --max_context_length 128 --max_cand_length 128 --train_batch_size 4 --eval_batch_size 4 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
 
 2. train gan `PYTHONPATH=. python blink/biencoder/train_gan.py --data_path data/medmentions/processed --output_path models/medmentions/gan --path_to_model models/medmentions/biencoder/pytorch_model.bin --learning_rate 5e-05 --num_train_epochs 80 --max_context_length 128 --max_cand_length 128 --train_batch_size 64 --eval_batch_size 128 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
-3. 
+3. generate latent features
+
+generate latent features on in-batch negatives: `PYTHONPATH=. python blink/biencoder/generate_features.py --data_path data/medmentions/processed --entity_dict_path data/medmentions/documents/all_documents.json --gan_path models/gan/epoch_49 --output_path models/medmentions/gan --path_to_model models/medmentions/biencoder/pytorch_model.bin --encode_batch_size 64 --max_context_length 128 --max_cand_length 128 --top_k 64 --bert_model SapBERT-from-PubMedBERT-fulltext`
+
+generate latent features on hard negatives: `PYTHONPATH=. python blink/biencoder/generate_features_hard.py --data_path data/medmentions/processed --entity_dict_path data/medmentions/documents/all_documents.json --gan_path models/gan/epoch_49 --output_path models/medmentions/gan --path_to_model models/medmentions/biencoder/pytorch_model.bin --encode_batch_size 64 --max_context_length 128 --max_cand_length 128 --top_k 64 --bert_model SapBERT-from-PubMedBERT-fulltext`
 ### Cross-encoder
 
 
