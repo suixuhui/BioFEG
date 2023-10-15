@@ -31,7 +31,7 @@ finetune biencoder on hard negatives: `PYTHONPATH=. python blink/biencoder/finet
 eval biencoder: We eval biencoder after training biencoder or finetuning biencoder. `PYTHONPATH=. python blink/biencoder/eval_biencoder.py --data_path data/medmentions/processed --entity_dict_path data/medmentions/documents/all_documents.json --output_path models/medmentions --path_to_model models/medmentions/finetune/pytorch_model.bin --encode_batch_size 64 --eval_batch_size 8 --top_k 64 --bert_model SapBERT-from-PubMedBERT-fulltext --mode train,valid,test,test_seen,test_unseen`
 
 ### Cross-encoder
-
+`PYTHONPATH=. python blink/crossencoder/train_cross.py --data_path models/medmentions/top64_candidates/ --output_path models/medmentions/crossencoder --learning_rate 2e-05 --num_train_epochs 5 --train_batch_size 1 --eval_batch_size 1 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers --add_linear`
 
 If you use our code in your work, please cite us.
 
