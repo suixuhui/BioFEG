@@ -6,7 +6,11 @@
 * Prepare data: `python data_process.py`
 
 ## Run
-1. Train 
+### Biencoder
+We train our biencoder in an iterative way: train biencoder -> train gan -> generate latent features -> finetune biencoder.
+
+We train our biencoder on in-batch negatives in the first iteration and on hard negatives in the following negatives.
+### Cross-encoder
 
 
 If you use our code in your work, please cite us.
