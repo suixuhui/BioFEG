@@ -7,7 +7,11 @@
 
 ## Run
 ### Biencoder
-We train our biencoder in an iterative way: train biencoder -> train gan -> generate latent features -> finetune biencoder. We train our biencoder on in-batch negatives in the first iteration and on hard negatives in the following negatives.
+We train our biencoder in an iterative way: train biencoder -> train gan -> generate latent features -> finetune biencoder. We train our biencoder on in-batch negatives in the first iteration and on hard negatives in the following iterations.
+1. train biencoder
+train biencoder on in-batch negatives: `PYTHONPATH=. python blink/biencoder/train_biencoder.py --data_path data/medmentions/processed --output_path models/medmentions/biencoder --learning_rate 1e-05 --num_train_epochs 1 --max_context_length 128 --max_cand_length 128 --train_batch_size 64 --eval_batch_size 32 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
+train biencoder on hard negatives: `PYTHONPATH=. python blink/biencoder/train_biencoder_hard.py --data_path models/medmentions/finetune/top64_candidates --output_path models/medmentions/hard_1/biencoder --path_to_model models/medmentions/finetune/pytorch_model.bin --learning_rate 1e-05 --num_train_epochs 1 --max_context_length 128 --max_cand_length 128 --train_batch_size 4 --eval_batch_size 4 --bert_model SapBERT-from-PubMedBERT-fulltext --type_optimization all_encoder_layers`
+2. train gan 
 ### Cross-encoder
 
 
